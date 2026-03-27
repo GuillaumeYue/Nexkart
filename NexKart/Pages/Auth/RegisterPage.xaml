@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.Auth.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="26,48,26,20"
+                                 Spacing="14">
+                <Grid ColumnDefinitions="Auto,Auto">
+                    <Label Grid.Column="0"
+                           Text="LOGIN"
+                           TextColor="#8E8E8E"
+                           FontSize="26">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGoToLoginTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="1"
+                           Margin="26,0,0,0"
+                           Text="[SIGN UP]"
+                           FontAttributes="Bold"
+                           TextColor="#79B521"
+                           FontSize="26" />
+                </Grid>
+
+                <Label Text="CREATE YOUR ACCOUNT"
+                       Margin="0,30,0,10"
+                       FontAttributes="Bold"
+                       FontSize="28"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#4B4B4B" />
+
+                <Image Source="e_icon.png"
+                       HeightRequest="84"
+                       Aspect="AspectFit" />
+
+                <Label Text="Full Name" TextColor="#20AFA8" FontAttributes="Bold" FontSize="18" />
+                <Entry x:Name="FullNameEntry" Placeholder="Your name" />
+
+                <Label Text="Email" TextColor="#20AFA8" FontAttributes="Bold" FontSize="18" />
+                <Entry x:Name="EmailEntry" Placeholder="name@email.com" Keyboard="Email" />
+
+                <Label Text="Password" TextColor="#20AFA8" FontAttributes="Bold" FontSize="18" />
+                <Entry x:Name="PasswordEntry" Placeholder="....." IsPassword="True" />
+
+                <Label Text="Confirm Password" TextColor="#20AFA8" FontAttributes="Bold" FontSize="18" />
+                <Entry x:Name="ConfirmPasswordEntry" Placeholder="....." IsPassword="True" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button Grid.Row="1"
+                HeightRequest="54"
+                Text="[SIGN UP]"
+                FontAttributes="Bold"
+                BackgroundColor="#0CA6A3"
+                TextColor="White"
+                CornerRadius="0"
+                Clicked="OnRegisterClicked" />
+    </Grid>
+</ContentPage>

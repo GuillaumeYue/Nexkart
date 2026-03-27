@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.SplashScreen"
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#4B64F6" Offset="0.0" />
+                <GradientStop Color="#20DCC8" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Label Text="N"
+               FontSize="96"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+    </Grid>
+</ContentPage>
