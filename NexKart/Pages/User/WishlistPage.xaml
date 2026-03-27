@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.User.WishlistPage"
+             Title="Wishlist">
+    <Grid RowDefinitions="Auto,*" BackgroundColor="#F3F0F7">
+        <Label Grid.Row="0"
+               Margin="14,14,14,8"
+               Text="My Wishlist"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#383838" />
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="14,0,14,12" Spacing="10">
+                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
+                    <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="10">
+                        <Image Source="sonyhd250.png" HeightRequest="65" WidthRequest="70" Aspect="AspectFit" />
+                        <StackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Sony Headphones" FontAttributes="Bold" FontSize="13" />
+                            <Label Text="$219.00" TextColor="#6C9C38" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Button Grid.Column="2"
+                                Text="Add"
+                                HeightRequest="32"
+                                WidthRequest="52"
+                                FontSize="12"
+                                CornerRadius="6"
+                                BackgroundColor="#7AC218"
+                                TextColor="White"
+                                Clicked="OnAddToCartClicked" />
+                    </Grid>
+                </Border>
+
+                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
+                    <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="10">
+                        <Image Source="switch_game.png" HeightRequest="65" WidthRequest="70" Aspect="AspectFit" />
+                        <StackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Switch Console" FontAttributes="Bold" FontSize="13" />
+                            <Label Text="$399.00" TextColor="#6C9C38" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Button Grid.Column="2"
+                                Text="Add"
+                                HeightRequest="32"
+                                WidthRequest="52"
+                                FontSize="12"
+                                CornerRadius="6"
+                                BackgroundColor="#7AC218"
+                                TextColor="White"
+                                Clicked="OnAddToCartClicked" />
+                    </Grid>
+                </Border>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

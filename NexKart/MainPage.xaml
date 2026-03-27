@@ -1,10 +1,146 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NexKart.MainPage">
+    <Grid RowDefinitions="*,70" BackgroundColor="#F3F0F7">
+        <ScrollView Grid.Row="0">
+            <StackLayout Padding="14,12,14,12" Spacing="10">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="HOME"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Image Grid.Column="1"
+                           Source="setting_icon.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           Margin="0,0,4,0" />
+                </Grid>
 
-    <ScrollView>
-        
-    </ScrollView>
+                <Border BackgroundColor="#ECE8F0" StrokeThickness="0" Padding="10,8">
+                    <Label Text="Search products..."
+                           TextColor="#999999"
+                           FontSize="13" />
+                </Border>
+
+                <Grid HeightRequest="140">
+                    <Image Source="spring_sale.png" Aspect="AspectFill" />
+                    <StackLayout Padding="14,12" Spacing="2">
+                        <Label Text="SPRING SALE"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#E6F2D3" />
+                        <Label Text="Up to 30% OFF"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#F5F9EE" />
+                        <Button Text="Shop Now"
+                                WidthRequest="92"
+                                HeightRequest="34"
+                                FontSize="12"
+                                BackgroundColor="#EDEDE5"
+                                TextColor="#333333"
+                                CornerRadius="0" />
+                    </StackLayout>
+                </Grid>
+
+                <Label Text="Categories"
+                       FontAttributes="Bold"
+                       TextColor="#454545"
+                       Margin="2,2,0,0" />
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="8" RowSpacing="8">
+                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <Grid ColumnDefinitions="50,*">
+                            <Image Source="laptop.png" HeightRequest="30" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="Laptops" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <Grid ColumnDefinitions="50,*">
+                            <Image Source="computer.png" HeightRequest="30" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="PCs" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <Grid ColumnDefinitions="50,*">
+                            <Image Source="headphones.png" HeightRequest="30" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="Electronics" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <Grid ColumnDefinitions="50,*">
+                            <Image Source="watch_pic.png" HeightRequest="30" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="Watches" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Label Text="Featured Products"
+                       FontAttributes="Bold"
+                       TextColor="#454545"
+                       Margin="2,2,0,0" />
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <StackLayout Spacing="4">
+                            <Image Source="dell_inspiration.png" HeightRequest="90" Aspect="AspectFit" />
+                            <Label Text="Dell Inspiron 15" FontSize="12" TextColor="#4E4E4E" />
+                            <Label Text="$899.00" FontSize="12" FontAttributes="Bold" TextColor="#6C9C38" />
+                        </StackLayout>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <StackLayout Spacing="4">
+                            <Image Source="gaming_pc.png" HeightRequest="90" Aspect="AspectFit" />
+                            <Label Text="Gaming PC" FontSize="12" TextColor="#4E4E4E" />
+                            <Label Text="$1,299.00" FontSize="12" FontAttributes="Bold" TextColor="#6C9C38" />
+                        </StackLayout>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <StackLayout Spacing="4">
+                            <Image Source="headphones.png" HeightRequest="90" Aspect="AspectFit" />
+                            <Label Text="Wireless Headphones" FontSize="12" TextColor="#4E4E4E" />
+                            <Label Text="$199.00" FontSize="12" FontAttributes="Bold" TextColor="#6C9C38" />
+                        </StackLayout>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <StackLayout Spacing="4">
+                            <Image Source="smart_watch.png" HeightRequest="90" Aspect="AspectFit" />
+                            <Label Text="Smartwatch" FontSize="12" TextColor="#4E4E4E" />
+                            <Label Text="$249.00" FontSize="12" FontAttributes="Bold" TextColor="#6C9C38" />
+                        </StackLayout>
+                    </Border>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*" BackgroundColor="#EFEAF4" Padding="8,6">
+            <StackLayout Grid.Column="0" Spacing="2" HorizontalOptions="Center">
+                <Image Source="home.png" HeightRequest="20" WidthRequest="20" />
+                <Label Text="Home" FontSize="11" HorizontalTextAlignment="Center" TextColor="#7B8F55" />
+            </StackLayout>
+            <StackLayout Grid.Column="1" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCartTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="shopping_cart.png" HeightRequest="20" WidthRequest="20" />
+                <Label Text="Cart" FontSize="11" HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+            <StackLayout Grid.Column="2" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnWishlistTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="wishlist_icon.png" HeightRequest="20" WidthRequest="20" />
+                <Label Text="Wishlist" FontSize="11" HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+            <StackLayout Grid.Column="3" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="user.png" HeightRequest="20" WidthRequest="20" />
+                <Label Text="Profile" FontSize="11" HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+        </Grid>
+    </Grid>
 
 </ContentPage>

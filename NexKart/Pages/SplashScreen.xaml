@@ -4,17 +4,11 @@
              x:Class="NexKart.Pages.SplashScreen"
              NavigationPage.HasNavigationBar="False">
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#4B64F6" Offset="0.0" />
-                <GradientStop Color="#20DCC8" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
+        <Image Source="background.png"
+               Aspect="AspectFill" />
 
-        <Label Text="N"
-               FontSize="96"
-               FontAttributes="Bold"
-               TextColor="White"
+        <Image Source="logo.png"
+               HeightRequest="110"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
     </Grid>

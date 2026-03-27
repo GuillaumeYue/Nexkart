@@ -3,66 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NexKart.Pages.Auth.AuthPage"
              NavigationPage.HasNavigationBar="False">
-    <Grid RowDefinitions="*,Auto">
-        <AbsoluteLayout Grid.Row="0">
-            <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1"
-                     AbsoluteLayout.LayoutFlags="All">
-                <BoxView.Background>
-                    <LinearGradientBrush EndPoint="1,1">
-                        <GradientStop Color="#4B64F6" Offset="0.0" />
-                        <GradientStop Color="#16E3C5" Offset="1.0" />
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="54" />
+        </Grid.RowDefinitions>
 
-            <Image Source="laptop.png"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.50,0.20,190,120"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-
-            <Image Source="thunder_icon.png"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.84,0.14,38,52"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-
-            <Image Source="homepod.png"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.30,0.42,88,90"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-
-            <Image Source="switch_game.png"
-                   Aspect="AspectFit"
-                   Rotation="-18"
-                   AbsoluteLayout.LayoutBounds="0.70,0.56,170,120"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-
-            <Image Source="headphones.png"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.35,0.80,150,132"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-
-            <Image Source="watch_pic.png"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.88,0.82,44,44"
-                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-        </AbsoluteLayout>
+        <Image Grid.Row="0"
+               Source="background.png"
+               Aspect="AspectFill" />
 
         <Grid Grid.Row="1"
-              HeightRequest="54"
-              ColumnDefinitions="*,*"
-              BackgroundColor="#111111">
+              BackgroundColor="#101010">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Button Grid.Column="0"
                     Text="[ LOGIN ]"
-                    FontAttributes="Bold"
-                    BackgroundColor="#86D816"
+                    BackgroundColor="#7FC51E"
                     TextColor="White"
                     CornerRadius="0"
                     Clicked="OnLoginClicked" />
 
             <Button Grid.Column="1"
                     Text="[ SIGN UP ]"
-                    FontAttributes="Bold"
-                    BackgroundColor="#0CA6A3"
+                    BackgroundColor="#0FA5A3"
                     TextColor="White"
                     CornerRadius="0"
                     Clicked="OnRegisterClicked" />
