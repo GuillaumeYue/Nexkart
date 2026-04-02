@@ -4,51 +4,47 @@
              x:Class="NexKart.Pages.User.CartPage"
              Title="Cart">
     <Grid RowDefinitions="*,Auto" BackgroundColor="#F3F0F7">
-        <ScrollView Grid.Row="0">
-            <StackLayout Padding="14,12" Spacing="10">
-                <Label Text="My Cart"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       TextColor="#383838" />
 
-                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
-                    <Grid ColumnDefinitions="70,*,Auto" ColumnSpacing="10">
-                        <Image Source="headphones.png" HeightRequest="60" WidthRequest="60" Aspect="AspectFit" />
-                        <StackLayout Grid.Column="1" Spacing="2">
-                            <Label Text="Wireless Headphones" FontAttributes="Bold" FontSize="13" />
-                            <Label Text="$199.00" TextColor="#6C9C38" FontAttributes="Bold" />
-                        </StackLayout>
-                        <StackLayout Grid.Column="2" Spacing="4">
-                            <Button Text="-" HeightRequest="24" WidthRequest="24" CornerRadius="4" Clicked="OnMinusClicked" />
-                            <Label x:Name="Qty1Label" Text="1" HorizontalTextAlignment="Center" />
-                            <Button Text="+" HeightRequest="24" WidthRequest="24" CornerRadius="4" Clicked="OnPlusClicked" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-
-                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
-                    <Grid ColumnDefinitions="70,*,Auto" ColumnSpacing="10">
-                        <Image Source="smart_watch.png" HeightRequest="60" WidthRequest="60" Aspect="AspectFit" />
-                        <StackLayout Grid.Column="1" Spacing="2">
-                            <Label Text="Smartwatch" FontAttributes="Bold" FontSize="13" />
-                            <Label Text="$249.00" TextColor="#6C9C38" FontAttributes="Bold" />
-                        </StackLayout>
-                        <StackLayout Grid.Column="2" Spacing="4">
-                            <Button Text="-" HeightRequest="24" WidthRequest="24" CornerRadius="4" Clicked="OnMinus2Clicked" />
-                            <Label x:Name="Qty2Label" Text="1" HorizontalTextAlignment="Center" />
-                            <Button Text="+" HeightRequest="24" WidthRequest="24" CornerRadius="4" Clicked="OnPlus2Clicked" />
-                        </StackLayout>
-                    </Grid>
-                </Border>
-            </StackLayout>
-        </ScrollView>
+        <CollectionView x:Name="CartList" Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10" Margin="14,5,14,5">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <StackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="{Binding ProductName}" FontAttributes="Bold" FontSize="13" />
+                                <Label Text="{Binding Price, StringFormat='${0:0.00}'}"
+                                       TextColor="#6C9C38" FontAttributes="Bold" />
+                                <Label Text="{Binding Quantity, StringFormat='Qty: {0}'}"
+                                       FontSize="12" TextColor="#666666" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                <Button Text="+"
+                                        HeightRequest="32" WidthRequest="36"
+                                        CornerRadius="4"
+                                        BackgroundColor="#7AC218" TextColor="White"
+                                        Clicked="OnPlusClicked" />
+                                <Button Text="-"
+                                        HeightRequest="32" WidthRequest="36"
+                                        CornerRadius="4"
+                                        Clicked="OnMinusClicked" />
+                                <Button Text="X"
+                                        HeightRequest="32" WidthRequest="36"
+                                        CornerRadius="4"
+                                        BackgroundColor="#CC3333" TextColor="White"
+                                        Clicked="OnRemoveClicked" />
+                            </StackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <Border Grid.Row="1" BackgroundColor="#E9E4EF" StrokeThickness="0" Padding="14,10">
             <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="4">
                 <Label Text="Total" FontSize="14" TextColor="#4D4D4D" />
                 <Label x:Name="TotalLabel"
                        Grid.Column="1"
-                       Text="$448.00"
+                       Text="$0.00"
                        FontSize="16"
                        FontAttributes="Bold"
                        TextColor="#6C9C38" />
@@ -62,5 +58,6 @@
                         Clicked="OnCheckoutClicked" />
             </Grid>
         </Border>
+
     </Grid>
 </ContentPage>

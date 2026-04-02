@@ -17,11 +17,13 @@
                                HeightRequest="70"
                                WidthRequest="70"
                                HorizontalOptions="Center" />
-                        <Label Text="Student User"
+                        <Label x:Name="NameLabel"
+                               Text=""
                                FontSize="18"
                                FontAttributes="Bold"
                                HorizontalTextAlignment="Center" />
-                        <Label Text="student@nexkart.com"
+                        <Label x:Name="EmailLabel"
+                               Text=""
                                FontSize="13"
                                TextColor="#666666"
                                HorizontalTextAlignment="Center" />

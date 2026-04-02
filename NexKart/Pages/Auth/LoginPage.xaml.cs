@@ -1,11 +1,7 @@
 namespace NexKart.Pages.Auth;
-using NexKart.Services;
 
 public partial class LoginPage : ContentPage
 {
-    private readonly FirebaseService _firebaseService = new();
-    private readonly GoogleAuthService _googleAuthService = new();
-
     public LoginPage()
     {
         InitializeComponent();
@@ -26,26 +22,26 @@ public partial class LoginPage : ContentPage
 
         try
         {
-            _ = await _firebaseService.GetProducts();
+            await App.Auth.SignInAsync(EmailEntry.Text.Trim(), PasswordEntry.Text);
             await Navigation.PushAsync(new MainPage());
         }
-        catch
+        catch (Exception ex)
         {
-            await DisplayAlert("Firebase", "Cannot connect to Realtime Database.", "OK");
+            await DisplayAlert("Login Failed", ex.Message, "OK");
         }
     }
 
     private async void OnGoogleLoginClicked(object sender, EventArgs e)
     {
-        if (!_googleAuthService.IsSupportedOnCurrentPlatform())
+        if (!App.GoogleAuth.IsSupportedOnCurrentPlatform())
         {
-            await DisplayAlert("Google Login", "Google login is not supported on Windows. Please test on Android device or emulator.", "OK");
+            await DisplayAlert("Google Login", "Google login is not supported on Windows.", "OK");
             return;
         }
 
         try
         {
-            var ok = await _googleAuthService.LoginWithGoogleAsync();
+            bool ok = await App.GoogleAuth.LoginWithGoogleAsync();
             if (!ok)
             {
                 await DisplayAlert("Google Login", "Google login failed.", "OK");

@@ -1,12 +1,9 @@
-namespace NexKart.Pages.Auth;
 using NexKart.Models;
-using NexKart.Services;
+
+namespace NexKart.Pages.Auth;
 
 public partial class RegisterPage : ContentPage
 {
-    private readonly FirebaseService _firebaseService = new();
-    private readonly GoogleAuthService _googleAuthService = new();
-
     public RegisterPage()
     {
         InitializeComponent();
@@ -27,37 +24,47 @@ public partial class RegisterPage : ContentPage
 
         if (PasswordEntry.Text != ConfirmPasswordEntry.Text)
         {
-            await DisplayAlert("Validation", "Password and confirm password do not match.", "OK");
+            await DisplayAlert("Validation", "Passwords do not match.", "OK");
             return;
         }
 
         try
         {
-            await _firebaseService.AddProduct(new Product
+            // Step 1: Create account in Firebase Authentication
+            await App.Auth.SignUpAsync(EmailEntry.Text.Trim(), PasswordEntry.Text);
+
+            // Step 2: Save user profile to Realtime Database
+            AppUser newUser = new AppUser
             {
-                Name = "new_user",
-                Quantity = 1,
-                Price = 0
-            });
+                Id = App.Auth.CurrentUserId,
+                Email = App.Auth.CurrentUserEmail,
+                FullName = FullNameEntry.Text ?? "",
+                Phone = "",
+                Role = "customer",
+                CreatedAt = DateTime.UtcNow,
+                IsActive = true
+            };
+            await App.Firebase.AddUser(newUser);
+
             await Navigation.PushAsync(new MainPage());
         }
-        catch
+        catch (Exception ex)
         {
-            await DisplayAlert("Firebase", "Cannot write to Realtime Database.", "OK");
+            await DisplayAlert("Registration Failed", ex.Message, "OK");
         }
     }
 
     private async void OnGoogleSignUpClicked(object sender, EventArgs e)
     {
-        if (!_googleAuthService.IsSupportedOnCurrentPlatform())
+        if (!App.GoogleAuth.IsSupportedOnCurrentPlatform())
         {
-            await DisplayAlert("Google Sign Up", "Google sign up is not supported on Windows. Please test on Android device or emulator.", "OK");
+            await DisplayAlert("Google Sign Up", "Google sign up is not supported on Windows.", "OK");
             return;
         }
 
         try
         {
-            var ok = await _googleAuthService.LoginWithGoogleAsync();
+            bool ok = await App.GoogleAuth.LoginWithGoogleAsync();
             if (!ok)
             {
                 await DisplayAlert("Google Sign Up", "Google sign up failed.", "OK");

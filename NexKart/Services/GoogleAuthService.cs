@@ -6,11 +6,11 @@ namespace NexKart.Services;
 
 public class GoogleAuthService
 {
-    private const string GoogleWebClientId = "584541222042-nuooa51lfv1soeaubqpsqf7p183uv19.apps.googleusercontent.com";
-    private const string FirebaseApiKey = "AIzaSyAkeA41s1T7756U4AS5GhJ4kShc9PpBacs";
+    private const string GoogleWebClientId = "584541222042-nuooa51lfv1soeaubqspsqf7p183uv19.apps.googleusercontent.com";
+    private const string FirebaseApiKey = "AIzaSyAzAGWCSGFapeL5Y9v623xnQPM-sWRTxEg";
     private const string RedirectUri = "nexkart://auth";
 
-    private readonly HttpClient _httpClient = new();
+    private readonly HttpClient _httpClient = new HttpClient();
 
     public bool IsSupportedOnCurrentPlatform()
     {
