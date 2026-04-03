@@ -94,18 +94,32 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProductTapped" />
+                        </Border.GestureRecognizers>
                         <StackLayout Spacing="4">
                             <Image Source="{Binding Image}" HeightRequest="90" Aspect="AspectFit" />
                             <Label Text="{Binding Name}" FontSize="12" TextColor="#4E4E4E" />
                             <Label Text="{Binding Price, StringFormat='${0:0.00}'}"
                                    FontSize="12" FontAttributes="Bold" TextColor="#6C9C38" />
-                            <Button Text="Add to Cart"
-                                    FontSize="11"
-                                    HeightRequest="30"
-                                    BackgroundColor="#7AC218"
-                                    TextColor="White"
-                                    CornerRadius="4"
-                                    Clicked="OnAddToCartClicked" />
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4">
+                                <Button Text="Add to Cart"
+                                        FontSize="11"
+                                        HeightRequest="30"
+                                        BackgroundColor="#7AC218"
+                                        TextColor="White"
+                                        CornerRadius="4"
+                                        Clicked="OnAddToCartClicked" />
+                                <Button Grid.Column="1"
+                                        Text="♡"
+                                        FontSize="14"
+                                        HeightRequest="30"
+                                        WidthRequest="34"
+                                        BackgroundColor="#EFECF4"
+                                        TextColor="#CC3333"
+                                        CornerRadius="4"
+                                        Clicked="OnAddToWishlistClicked" />
+                            </Grid>
                         </StackLayout>
                     </Border>
                 </DataTemplate>

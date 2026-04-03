@@ -11,46 +11,49 @@
                FontAttributes="Bold"
                TextColor="#383838" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="14,0,14,12" Spacing="10">
-                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
-                    <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="10">
-                        <Image Source="sonyhd250.png" HeightRequest="65" WidthRequest="70" Aspect="AspectFit" />
-                        <StackLayout Grid.Column="1" Spacing="2">
-                            <Label Text="Sony Headphones" FontAttributes="Bold" FontSize="13" />
-                            <Label Text="$219.00" TextColor="#6C9C38" FontAttributes="Bold" />
-                        </StackLayout>
-                        <Button Grid.Column="2"
-                                Text="Add"
-                                HeightRequest="32"
-                                WidthRequest="52"
-                                FontSize="12"
-                                CornerRadius="6"
-                                BackgroundColor="#7AC218"
-                                TextColor="White"
-                                Clicked="OnAddToCartClicked" />
-                    </Grid>
-                </Border>
+        <!-- Empty state label, shown when wishlist is empty -->
+        <Label x:Name="EmptyLabel"
+               Grid.Row="1"
+               Text="Your wishlist is empty."
+               FontSize="14"
+               TextColor="#999999"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               IsVisible="False" />
 
-                <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10">
-                    <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="10">
-                        <Image Source="switch_game.png" HeightRequest="65" WidthRequest="70" Aspect="AspectFit" />
-                        <StackLayout Grid.Column="1" Spacing="2">
-                            <Label Text="Switch Console" FontAttributes="Bold" FontSize="13" />
-                            <Label Text="$399.00" TextColor="#6C9C38" FontAttributes="Bold" />
-                        </StackLayout>
-                        <Button Grid.Column="2"
-                                Text="Add"
-                                HeightRequest="32"
-                                WidthRequest="52"
-                                FontSize="12"
-                                CornerRadius="6"
-                                BackgroundColor="#7AC218"
-                                TextColor="White"
-                                Clicked="OnAddToCartClicked" />
-                    </Grid>
-                </Border>
-            </StackLayout>
-        </ScrollView>
+        <CollectionView x:Name="WishlistList" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10" Margin="14,5,14,5">
+                        <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="10">
+                            <Image Source="{Binding Image}" HeightRequest="65" WidthRequest="70" Aspect="AspectFit" />
+                            <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                <Label Text="{Binding ProductName}" FontAttributes="Bold" FontSize="13" />
+                                <Label Text="{Binding Price, StringFormat='${0:0.00}'}"
+                                       TextColor="#6C9C38" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                <Button Text="Add"
+                                        HeightRequest="32"
+                                        WidthRequest="52"
+                                        FontSize="12"
+                                        CornerRadius="6"
+                                        BackgroundColor="#7AC218"
+                                        TextColor="White"
+                                        Clicked="OnAddToCartClicked" />
+                                <Button Text="X"
+                                        HeightRequest="32"
+                                        WidthRequest="52"
+                                        FontSize="12"
+                                        CornerRadius="6"
+                                        BackgroundColor="#CC3333"
+                                        TextColor="White"
+                                        Clicked="OnRemoveClicked" />
+                            </StackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

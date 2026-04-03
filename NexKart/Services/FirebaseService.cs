@@ -98,10 +98,11 @@ public class FirebaseService
         {
             fields = new
             {
-                Name     = new { stringValue  = p.Name },
-                Image    = new { stringValue  = p.Image },
-                Price    = new { doubleValue  = (double)p.Price },
-                Quantity = new { integerValue = p.Quantity.ToString() }
+                Name        = new { stringValue  = p.Name },
+                Image       = new { stringValue  = p.Image },
+                Description = new { stringValue  = p.Description },
+                Price       = new { doubleValue  = (double)p.Price },
+                Quantity    = new { integerValue = p.Quantity.ToString() }
             }
         });
     }
@@ -111,11 +112,12 @@ public class FirebaseService
         Dictionary<string, FirestoreValue> f = doc.fields;
 
         Product product = new Product();
-        product.Id       = GetDocId(doc);
-        product.Name     = GetString(f, "Name");
-        product.Image    = GetString(f, "Image");
-        product.Price    = GetDecimal(f, "Price");
-        product.Quantity = GetInt(f, "Quantity");
+        product.Id          = GetDocId(doc);
+        product.Name        = GetString(f, "Name");
+        product.Image       = GetString(f, "Image");
+        product.Description = GetString(f, "Description");
+        product.Price       = GetDecimal(f, "Price");
+        product.Quantity    = GetInt(f, "Quantity");
 
         return product;
     }
@@ -156,6 +158,74 @@ public class FirebaseService
     {
         await SetAuthHeader();
         await _httpClient.DeleteAsync(BaseUrl + "/Products/" + id);
+    }
+
+    // ==================== Wishlist (stored under Users/{uid}/Wishlist) ====================
+
+    private string WishlistPath(string userId)
+    {
+        return BaseUrl + "/Users/" + userId + "/Wishlist";
+    }
+
+    private string WishlistItemToJson(WishlistItem item)
+    {
+        return JsonSerializer.Serialize(new
+        {
+            fields = new
+            {
+                ProductId   = new { stringValue = item.ProductId },
+                ProductName = new { stringValue = item.ProductName },
+                Price       = new { doubleValue = (double)item.Price },
+                Image       = new { stringValue = item.Image }
+            }
+        });
+    }
+
+    private WishlistItem FirestoreToWishlistItem(FirestoreDocument doc)
+    {
+        Dictionary<string, FirestoreValue> f = doc.fields;
+
+        WishlistItem item = new WishlistItem();
+        item.ProductId   = GetDocId(doc);
+        item.ProductName = GetString(f, "ProductName");
+        item.Price       = GetDecimal(f, "Price");
+        item.Image       = GetString(f, "Image");
+
+        return item;
+    }
+
+    public async Task AddToWishlist(string userId, WishlistItem item)
+    {
+        await SetAuthHeader();
+        StringContent content = new StringContent(WishlistItemToJson(item), Encoding.UTF8, "application/json");
+        await _httpClient.PatchAsync(WishlistPath(userId) + "/" + item.ProductId, content);
+    }
+
+    public async Task<List<WishlistItem>> GetWishlist(string userId)
+    {
+        await SetAuthHeader();
+
+        var response = await _httpClient.GetAsync(WishlistPath(userId));
+        string json = await response.Content.ReadAsStringAsync();
+
+        FirestoreList list = JsonSerializer.Deserialize<FirestoreList>(json, _jsonOptions);
+
+        List<WishlistItem> result = new List<WishlistItem>();
+        if (list.documents != null)
+        {
+            foreach (FirestoreDocument doc in list.documents)
+            {
+                result.Add(FirestoreToWishlistItem(doc));
+            }
+        }
+
+        return result;
+    }
+
+    public async Task RemoveFromWishlist(string userId, string productId)
+    {
+        await SetAuthHeader();
+        await _httpClient.DeleteAsync(WishlistPath(userId) + "/" + productId);
     }
 
     // ==================== Cart (stored under Users/{uid}/Cart) ====================

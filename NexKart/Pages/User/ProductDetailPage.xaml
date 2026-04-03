@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.User.ProductDetailPage"
+             Title="Product Details">
+    <ScrollView BackgroundColor="#F3F0F7">
+        <StackLayout Padding="14" Spacing="12">
+
+            <!-- Product Image -->
+            <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="20" HorizontalOptions="Center">
+                <Image x:Name="ProductImage"
+                       HeightRequest="220"
+                       WidthRequest="220"
+                       Aspect="AspectFit" />
+            </Border>
+
+            <!-- Product Name -->
+            <Label x:Name="ProductName"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#383838" />
+
+            <!-- Price -->
+            <Label x:Name="ProductPrice"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#6C9C38" />
+
+            <!-- Stock -->
+            <Label x:Name="ProductStock"
+                   FontSize="13"
+                   TextColor="#888888" />
+
+            <!-- Description Header -->
+            <Label Text="Description"
+                   FontSize="15"
+                   FontAttributes="Bold"
+                   TextColor="#555555"
+                   Margin="0,6,0,0" />
+
+            <!-- Description Text -->
+            <Label x:Name="ProductDescription"
+                   FontSize="14"
+                   TextColor="#666666"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Buttons -->
+            <Button Text="Add to Cart"
+                    FontSize="15"
+                    HeightRequest="44"
+                    BackgroundColor="#7AC218"
+                    TextColor="White"
+                    CornerRadius="6"
+                    Margin="0,10,0,0"
+                    Clicked="OnAddToCartClicked" />
+
+            <Button Text="Add to Wishlist"
+                    FontSize="15"
+                    HeightRequest="44"
+                    BackgroundColor="#EFECF4"
+                    TextColor="#CC3333"
+                    CornerRadius="6"
+                    Clicked="OnAddToWishlistClicked" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

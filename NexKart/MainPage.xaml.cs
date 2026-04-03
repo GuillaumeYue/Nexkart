@@ -18,6 +18,13 @@ namespace NexKart
             ProductList.ItemsSource = products;
         }
 
+        private async void OnProductTapped(object sender, TappedEventArgs e)
+        {
+            Border border = (Border)sender;
+            Product product = (Product)border.BindingContext;
+            await Navigation.PushAsync(new ProductDetailPage(product));
+        }
+
         private async void OnAddToCartClicked(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -33,6 +40,23 @@ namespace NexKart
 
             await App.Firebase.AddToCart(App.Auth.CurrentUserId, cartItem);
             await DisplayAlert("Cart", product.Name + " added to cart!", "OK");
+        }
+
+        private async void OnAddToWishlistClicked(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Product product = (Product)btn.BindingContext;
+
+            WishlistItem wishlistItem = new WishlistItem
+            {
+                ProductId = product.Id,
+                ProductName = product.Name,
+                Price = product.Price,
+                Image = product.Image
+            };
+
+            await App.Firebase.AddToWishlist(App.Auth.CurrentUserId, wishlistItem);
+            await DisplayAlert("Wishlist", product.Name + " added to wishlist!", "OK");
         }
 
         private async void OnCartTapped(object sender, TappedEventArgs e)
