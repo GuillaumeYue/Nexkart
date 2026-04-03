@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.User.EditProfilePage"
+             Title="Edit Profile">
+    <ScrollView BackgroundColor="#F3F0F7">
+        <StackLayout Padding="14" Spacing="12">
+
+            <Label Text="Edit Profile"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#383838" />
+
+            <Image Source="user.png"
+                   HeightRequest="80"
+                   WidthRequest="80"
+                   HorizontalOptions="Center"
+                   Margin="0,6,0,6" />
+
+            <!-- Full Name -->
+            <Label Text="Full Name" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10,8">
+                <Entry x:Name="NameEntry"
+                       Placeholder="Enter your full name"
+                       FontSize="14" />
+            </Border>
+
+            <!-- Phone -->
+            <Label Text="Phone" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="10,8">
+                <Entry x:Name="PhoneEntry"
+                       Placeholder="Enter your phone number"
+                       Keyboard="Telephone"
+                       FontSize="14" />
+            </Border>
+
+            <!-- Email (read-only) -->
+            <Label Text="Email" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#E0DDE4" StrokeThickness="0" Padding="10,8">
+                <Label x:Name="EmailLabel"
+                       FontSize="14"
+                       TextColor="#888888" />
+            </Border>
+
+            <!-- Save Button -->
+            <Button Text="Save Changes"
+                    FontSize="15"
+                    HeightRequest="44"
+                    BackgroundColor="#7AC218"
+                    TextColor="White"
+                    CornerRadius="6"
+                    Margin="0,10,0,0"
+                    Clicked="OnSaveClicked" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

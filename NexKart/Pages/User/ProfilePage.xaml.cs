@@ -19,7 +19,18 @@ public partial class ProfilePage : ContentPage
         {
             NameLabel.Text = string.IsNullOrEmpty(user.FullName) ? "User" : user.FullName;
             EmailLabel.Text = user.Email;
+            PhoneLabel.Text = string.IsNullOrEmpty(user.Phone) ? "" : user.Phone;
         }
+    }
+
+    private async void OnEditProfileClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditProfilePage());
+    }
+
+    private async void OnMyOrdersTapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushAsync(new MyOrdersPage());
     }
 
     private async void OnLogoutClicked(object sender, EventArgs e)

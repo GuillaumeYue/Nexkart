@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.User.MyOrdersPage"
+             Title="My Orders">
+    <Grid RowDefinitions="Auto,*" BackgroundColor="#F3F0F7">
+        <Label Grid.Row="0"
+               Margin="14,14,14,8"
+               Text="My Orders"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#383838" />
+
+        <Label x:Name="EmptyLabel"
+               Grid.Row="1"
+               Text="You have no orders yet."
+               FontSize="14"
+               TextColor="#999999"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               IsVisible="False" />
+
+        <CollectionView x:Name="OrderList" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#EFECF4" StrokeThickness="0" Padding="12" Margin="14,5,14,5">
+                        <StackLayout Spacing="6">
+                            <!-- Order header: date and status -->
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding CreatedAt, StringFormat='{0:MMM dd, yyyy}'}"
+                                       FontSize="13" FontAttributes="Bold" TextColor="#383838" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Status}"
+                                       FontSize="12" FontAttributes="Bold" TextColor="#7AC218" />
+                            </Grid>
+
+                            <!-- Items summary -->
+                            <Label Text="{Binding ItemsSummary}"
+                                   FontSize="12" TextColor="#666666" />
+
+                            <!-- Total -->
+                            <Label Text="{Binding TotalAmount, StringFormat='Total: ${0:0.00}'}"
+                                   FontSize="14" FontAttributes="Bold" TextColor="#6C9C38" />
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
