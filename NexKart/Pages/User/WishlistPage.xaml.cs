@@ -17,13 +17,19 @@ public partial class WishlistPage : ContentPage
 
     private async Task LoadWishlist()
     {
-        List<WishlistItem> items = await App.Firebase.GetWishlist(App.Auth.CurrentUserId);
+        try
+        {
+            List<WishlistItem> items = await App.Firebase.GetWishlist(App.Auth.CurrentUserId);
 
-        WishlistList.ItemsSource = null;
-        WishlistList.ItemsSource = items;
+            WishlistList.ItemsSource = null;
+            WishlistList.ItemsSource = items;
 
-        // Show empty message if no items
-        EmptyLabel.IsVisible = (items.Count == 0);
+            EmptyLabel.IsVisible = (items.Count == 0);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "Failed to load wishlist: " + ex.Message, "OK");
+        }
     }
 
     private async void OnAddToCartClicked(object sender, EventArgs e)

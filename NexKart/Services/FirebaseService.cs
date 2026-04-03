@@ -206,12 +206,19 @@ public class FirebaseService
         await SetAuthHeader();
 
         var response = await _httpClient.GetAsync(WishlistPath(userId));
+
+        // If the subcollection doesn't exist yet, Firestore returns 404
+        if (!response.IsSuccessStatusCode)
+        {
+            return new List<WishlistItem>();
+        }
+
         string json = await response.Content.ReadAsStringAsync();
 
         FirestoreList list = JsonSerializer.Deserialize<FirestoreList>(json, _jsonOptions);
 
         List<WishlistItem> result = new List<WishlistItem>();
-        if (list.documents != null)
+        if (list != null && list.documents != null)
         {
             foreach (FirestoreDocument doc in list.documents)
             {
