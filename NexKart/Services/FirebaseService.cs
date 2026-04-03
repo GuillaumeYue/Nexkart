@@ -194,11 +194,12 @@ public class FirebaseService
         return item;
     }
 
-    public async Task AddToWishlist(string userId, WishlistItem item)
+    public async Task<bool> AddToWishlist(string userId, WishlistItem item)
     {
         await SetAuthHeader();
         StringContent content = new StringContent(WishlistItemToJson(item), Encoding.UTF8, "application/json");
-        await _httpClient.PatchAsync(WishlistPath(userId) + "/" + item.ProductId, content);
+        var response = await _httpClient.PatchAsync(WishlistPath(userId) + "/" + item.ProductId, content);
+        return response.IsSuccessStatusCode;
     }
 
     public async Task<List<WishlistItem>> GetWishlist(string userId)

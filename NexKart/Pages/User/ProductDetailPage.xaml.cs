@@ -45,7 +45,10 @@ public partial class ProductDetailPage : ContentPage
             Image = _product.Image
         };
 
-        await App.Firebase.AddToWishlist(App.Auth.CurrentUserId, wishlistItem);
-        await DisplayAlert("Wishlist", _product.Name + " added to wishlist!", "OK");
+        bool success = await App.Firebase.AddToWishlist(App.Auth.CurrentUserId, wishlistItem);
+        if (success)
+            await DisplayAlert("Wishlist", _product.Name + " added to wishlist!", "OK");
+        else
+            await DisplayAlert("Error", "Failed to add to wishlist.", "OK");
     }
 }
