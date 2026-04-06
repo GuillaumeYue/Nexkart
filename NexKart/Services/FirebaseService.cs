@@ -499,6 +499,24 @@ public class FirebaseService
         await _httpClient.PatchAsync(BaseUrl + "/Users/" + user.Id, content);
     }
 
+    public async Task<List<AppUser>> GetUsers()
+    {
+        await SetAuthHeader();
+
+        var response = await _httpClient.GetAsync(BaseUrl + "/Users");
+        string json = await response.Content.ReadAsStringAsync();
+
+        FirestoreList list = JsonSerializer.Deserialize<FirestoreList>(json, _jsonOptions);
+
+        List<AppUser> result = new List<AppUser>();
+        foreach (FirestoreDocument doc in list.documents)
+        {
+            result.Add(FirestoreToUser(doc));
+        }
+
+        return result;
+    }
+
     public async Task<AppUser> GetUserById(string id)
     {
         await SetAuthHeader();

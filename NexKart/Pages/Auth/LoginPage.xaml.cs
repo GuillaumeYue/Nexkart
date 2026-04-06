@@ -1,3 +1,6 @@
+using NexKart.Models;
+using NexKart.Pages.Admin;
+
 namespace NexKart.Pages.Auth;
 
 public partial class LoginPage : ContentPage
@@ -23,7 +26,18 @@ public partial class LoginPage : ContentPage
         try
         {
             await App.Auth.SignInAsync(EmailEntry.Text.Trim(), PasswordEntry.Text);
-            await Navigation.PushAsync(new MainPage());
+
+            // Check the user's role and navigate to the correct panel
+            AppUser user = await App.Firebase.GetUserById(App.Auth.CurrentUserId);
+
+            if (user != null && user.Role == "admin")
+            {
+                Application.Current.Windows[0].Page = new NavigationPage(new AdminDashboardPage());
+            }
+            else
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
         }
         catch (Exception ex)
         {

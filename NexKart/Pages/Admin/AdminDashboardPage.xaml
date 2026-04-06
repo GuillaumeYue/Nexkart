@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.Admin.AdminDashboardPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="56,*,70" BackgroundColor="#F2F2F2">
+
+        <!-- Top bar -->
+        <Grid Grid.Row="0" BackgroundColor="White" Padding="16,0">
+            <Label Text="ADMIN PANEL"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <Image Source="wishlist_icon.png"
+                   HeightRequest="24" WidthRequest="24"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Dashboard content -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="14,16" Spacing="14">
+
+                <Label Text="Dashboard"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="#222222" />
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="180,180"
+                      ColumnSpacing="10" RowSpacing="10">
+
+                    <!-- Products card -->
+                    <Border Grid.Row="0" Grid.Column="0"
+                            BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="16">
+                        <StackLayout Spacing="8" VerticalOptions="Center">
+                            <Image Source="shopping_cart.png"
+                                   HeightRequest="36" WidthRequest="36"
+                                   HorizontalOptions="Start" />
+                            <Label Text="Products" TextColor="#666666" FontSize="15" />
+                            <Label x:Name="ProductCountLabel"
+                                   Text="..." FontSize="32"
+                                   FontAttributes="Bold" TextColor="#222222" />
+                        </StackLayout>
+                    </Border>
+
+                    <!-- Users card -->
+                    <Border Grid.Row="0" Grid.Column="1"
+                            BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="16">
+                        <StackLayout Spacing="8" VerticalOptions="Center">
+                            <Image Source="user.png"
+                                   HeightRequest="36" WidthRequest="36"
+                                   HorizontalOptions="Start" />
+                            <Label Text="Users" TextColor="#666666" FontSize="15" />
+                            <Label x:Name="UserCountLabel"
+                                   Text="..." FontSize="32"
+                                   FontAttributes="Bold" TextColor="#222222" />
+                        </StackLayout>
+                    </Border>
+
+                    <!-- Orders card -->
+                    <Border Grid.Row="1" Grid.Column="0"
+                            BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="16">
+                        <StackLayout Spacing="8" VerticalOptions="Center">
+                            <Image Source="wishlist_icon.png"
+                                   HeightRequest="36" WidthRequest="36"
+                                   HorizontalOptions="Start" />
+                            <Label Text="Orders" TextColor="#666666" FontSize="15" />
+                            <Label x:Name="OrderCountLabel"
+                                   Text="..." FontSize="32"
+                                   FontAttributes="Bold" TextColor="#222222" />
+                        </StackLayout>
+                    </Border>
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Bottom tab bar -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*"
+              BackgroundColor="White" Padding="8,10">
+
+            <!-- Dashboard (active) -->
+            <StackLayout Grid.Column="0" Spacing="2" HorizontalOptions="Center">
+                <Image Source="home.png" HeightRequest="22" WidthRequest="22" />
+                <Label Text="Dashboard" FontSize="11"
+                       HorizontalTextAlignment="Center" TextColor="#79B521" />
+            </StackLayout>
+
+            <!-- Product -->
+            <StackLayout Grid.Column="1" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProductTabTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="shopping_cart.png" HeightRequest="22" WidthRequest="22" />
+                <Label Text="Product" FontSize="11"
+                       HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+
+            <!-- User -->
+            <StackLayout Grid.Column="2" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUserTabTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="user.png" HeightRequest="22" WidthRequest="22" />
+                <Label Text="User" FontSize="11"
+                       HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+
+            <!-- Order -->
+            <StackLayout Grid.Column="3" Spacing="2" HorizontalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnOrderTabTapped" />
+                </StackLayout.GestureRecognizers>
+                <Image Source="setting_icon.png" HeightRequest="22" WidthRequest="22" />
+                <Label Text="Order" FontSize="11"
+                       HorizontalTextAlignment="Center" TextColor="#4F4F4F" />
+            </StackLayout>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
