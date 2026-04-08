@@ -14,3 +14,6 @@ obj/
 *.jks
 TestResults/
 artifacts/
+
+# Stripe secret key
+stripe_key.txt
