@@ -5,21 +5,33 @@ namespace NexKart.Services;
 
 public class StripeService
 {
-    private const string SecretKey = "YOUR_STRIPE_SECRET_KEY";
     private const string BaseUrl = "https://api.stripe.com/v1";
 
     private HttpClient _client;
+    private bool _initialized = false;
 
     public StripeService()
     {
         _client = new HttpClient();
+    }
+
+    private async Task EnsureInitialized()
+    {
+        if (_initialized) return;
+
+        using Stream stream = await FileSystem.OpenAppPackageFileAsync("stripe_key.txt");
+        using StreamReader reader = new StreamReader(stream);
+        string secretKey = (await reader.ReadToEndAsync()).Trim();
+
         _client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", SecretKey);
+            new AuthenticationHeaderValue("Bearer", secretKey);
+        _initialized = true;
     }
 
     // Create a PaymentIntent with amount in cents
     public async Task<string> CreatePaymentIntent(decimal amount, string currency = "usd")
     {
+        await EnsureInitialized();
         int amountInCents = (int)(amount * 100);
 
         var content = new FormUrlEncodedContent(new[]
@@ -43,6 +55,7 @@ public class StripeService
     // Confirm payment using Stripe test payment method tokens
     public async Task<bool> ConfirmPayment(string clientSecret, string cardNumber)
     {
+        await EnsureInitialized();
         // Extract PaymentIntent ID from client secret (format: pi_xxx_secret_xxx)
         string paymentIntentId = clientSecret.Split("_secret_")[0];
 
