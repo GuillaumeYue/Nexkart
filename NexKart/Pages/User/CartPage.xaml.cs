@@ -70,41 +70,15 @@ public partial class CartPage : ContentPage
             return;
         }
 
-        // Build order items list
-        List<OrderItem> orderItems = new List<OrderItem>();
+        // Calculate total
         decimal total = 0;
-
         foreach (CartItem cartItem in cartItems)
         {
             total = total + (cartItem.Price * cartItem.Quantity);
-
-            orderItems.Add(new OrderItem
-            {
-                ProductId = cartItem.ProductId,
-                ProductName = cartItem.ProductName,
-                Quantity = cartItem.Quantity,
-                UnitPrice = cartItem.Price
-            });
         }
 
-        // Save order to Firebase
-        Order order = new Order
-        {
-            UserId = App.Auth.CurrentUserId,
-            Status = "Pending",
-            TotalAmount = total,
-            CreatedAt = DateTime.UtcNow,
-            Items = orderItems
-        };
-
-        await App.Firebase.AddOrder(order);
-
-        // Clear cart after order placed
-        await App.Firebase.ClearCart(App.Auth.CurrentUserId);
-
-        await DisplayAlert("Order Placed", "Your order has been placed successfully!", "OK");
-
-        await LoadCart();
+        // Navigate to payment page
+        await Navigation.PushAsync(new PaymentPage(cartItems, total));
     }
 
     private void RefreshTotal()
