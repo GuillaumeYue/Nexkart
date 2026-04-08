@@ -26,19 +26,31 @@
                     <DataTemplate>
                         <Border BackgroundColor="#EBEBEB" StrokeThickness="0"
                                 Padding="14,12" Margin="14,4,14,4">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnOrderTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
                                 <StackLayout Grid.Column="0" Spacing="2">
-                                    <Label Text="{Binding Id}"
+                                    <Label Text="{Binding ItemsSummary}"
                                            FontAttributes="Bold" FontSize="13"
                                            TextColor="#444444" />
                                     <Label Text="{Binding TotalAmount, StringFormat='Total: ${0:0.00}'}"
                                            TextColor="#79B521" FontSize="13" />
                                     <Label Text="{Binding Status}"
-                                           TextColor="#888888" FontSize="12" />
+                                           TextColor="#888888" FontSize="12" FontAttributes="Bold" />
                                     <Label Text="{Binding CreatedAt, StringFormat='{0:MMM dd, yyyy}'}"
                                            TextColor="#AAAAAA" FontSize="11" />
                                 </StackLayout>
-                                <Label Grid.Column="1"
+                                <Button Grid.Column="1"
+                                        Text="Del"
+                                        FontSize="11"
+                                        HeightRequest="30"
+                                        WidthRequest="44"
+                                        CornerRadius="4"
+                                        BackgroundColor="#CC3333"
+                                        TextColor="White"
+                                        Clicked="OnDeleteClicked" />
+                                <Label Grid.Column="2"
                                        Text="›"
                                        FontSize="22" TextColor="#AAAAAA"
                                        VerticalOptions="Center" />
