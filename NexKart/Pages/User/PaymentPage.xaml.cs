@@ -74,7 +74,7 @@ public partial class PaymentPage : ContentPage
                 await App.Firebase.ClearCart(App.Auth.CurrentUserId);
 
                 await DisplayAlert("Success", "Payment successful! Your order has been placed.", "OK");
-                await Navigation.PopToRootAsync();
+                await Navigation.PopAsync();
             }
             else
             {
