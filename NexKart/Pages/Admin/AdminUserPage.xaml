@@ -26,16 +26,33 @@
                     <DataTemplate>
                         <Border BackgroundColor="#EBEBEB" StrokeThickness="0"
                                 Padding="14,12" Margin="14,4,14,4">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnUserTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
                                 <StackLayout Grid.Column="0" Spacing="2">
                                     <Label Text="{Binding FullName}"
                                            FontAttributes="Bold" FontSize="14" />
                                     <Label Text="{Binding Email}"
                                            TextColor="#555555" FontSize="13" />
-                                    <Label Text="{Binding Role}"
-                                           TextColor="#888888" FontSize="12" />
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="8">
+                                        <Label Text="{Binding Role}"
+                                               TextColor="#79B521" FontSize="12" FontAttributes="Bold" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding ActiveStatus}"
+                                               TextColor="#888888" FontSize="12" />
+                                    </Grid>
                                 </StackLayout>
-                                <Label Grid.Column="1"
+                                <Button Grid.Column="1"
+                                        Text="Del"
+                                        FontSize="11"
+                                        HeightRequest="30"
+                                        WidthRequest="44"
+                                        CornerRadius="4"
+                                        BackgroundColor="#CC3333"
+                                        TextColor="White"
+                                        Clicked="OnDeleteClicked" />
+                                <Label Grid.Column="2"
                                        Text="›"
                                        FontSize="22" TextColor="#AAAAAA"
                                        VerticalOptions="Center" />

@@ -538,6 +538,12 @@ public class FirebaseService
         StringContent content = new StringContent(UserToJson(user), Encoding.UTF8, "application/json");
         await _httpClient.PatchAsync(BaseUrl + "/Users/" + user.Id, content);
     }
+
+    public async Task DeleteUser(string id)
+    {
+        await SetAuthHeader();
+        await _httpClient.DeleteAsync(BaseUrl + "/Users/" + id);
+    }
 }
 
 // ==================== Firestore response classes ====================

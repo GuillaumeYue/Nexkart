@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.Admin.AdminUserFormPage"
+             Title="Edit User">
+    <ScrollView BackgroundColor="#F2F2F2">
+        <StackLayout Padding="14" Spacing="12">
+
+            <Label Text="Edit User"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#222222" />
+
+            <!-- Email (read-only) -->
+            <Label Text="Email" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#E0DDE4" StrokeThickness="0" Padding="10,8">
+                <Label x:Name="EmailLabel"
+                       FontSize="14"
+                       TextColor="#888888" />
+            </Border>
+
+            <!-- Full Name -->
+            <Label Text="Full Name" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Entry x:Name="NameEntry"
+                       Placeholder="Enter full name"
+                       FontSize="14" />
+            </Border>
+
+            <!-- Phone -->
+            <Label Text="Phone" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Entry x:Name="PhoneEntry"
+                       Placeholder="Enter phone number"
+                       Keyboard="Telephone"
+                       FontSize="14" />
+            </Border>
+
+            <!-- Role -->
+            <Label Text="Role" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Picker x:Name="RolePicker" FontSize="14">
+                    <Picker.Items>
+                        <x:String>customer</x:String>
+                        <x:String>admin</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Border>
+
+            <!-- Active Status -->
+            <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                <Label Text="Active" FontSize="14" VerticalOptions="Center" />
+                <Switch x:Name="ActiveSwitch" Grid.Column="1" />
+            </Grid>
+
+            <!-- Save Button -->
+            <Button Text="Save Changes"
+                    FontSize="15"
+                    HeightRequest="44"
+                    BackgroundColor="#79B521"
+                    TextColor="White"
+                    CornerRadius="6"
+                    Margin="0,10,0,0"
+                    Clicked="OnSaveClicked" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
