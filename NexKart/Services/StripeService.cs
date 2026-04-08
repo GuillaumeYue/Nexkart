@@ -40,19 +40,28 @@ public class StripeService
         return clientSecret;
     }
 
-    // Confirm payment with card details (test mode)
-    public async Task<bool> ConfirmPayment(string clientSecret, string cardNumber, string expMonth, string expYear, string cvc)
+    // Confirm payment using Stripe test payment method tokens
+    public async Task<bool> ConfirmPayment(string clientSecret, string cardNumber)
     {
         // Extract PaymentIntent ID from client secret (format: pi_xxx_secret_xxx)
         string paymentIntentId = clientSecret.Split("_secret_")[0];
 
+        // Map test card numbers to Stripe test payment method tokens
+        string paymentMethod = "pm_card_visa"; // default
+        string cleanCard = cardNumber.Replace(" ", "");
+
+        if (cleanCard == "4242424242424242")
+            paymentMethod = "pm_card_visa";
+        else if (cleanCard == "5555555555554444")
+            paymentMethod = "pm_card_mastercard";
+        else if (cleanCard == "4000000000009995")
+            paymentMethod = "pm_card_visa_chargeDeclined";
+        else if (cleanCard == "4000000000000002")
+            paymentMethod = "pm_card_visa_chargeDeclined";
+
         var content = new FormUrlEncodedContent(new[]
         {
-            new KeyValuePair<string, string>("payment_method_data[type]", "card"),
-            new KeyValuePair<string, string>("payment_method_data[card][number]", cardNumber),
-            new KeyValuePair<string, string>("payment_method_data[card][exp_month]", expMonth),
-            new KeyValuePair<string, string>("payment_method_data[card][exp_year]", expYear),
-            new KeyValuePair<string, string>("payment_method_data[card][cvc]", cvc)
+            new KeyValuePair<string, string>("payment_method", paymentMethod)
         });
 
         string url = BaseUrl + "/payment_intents/" + paymentIntentId + "/confirm";

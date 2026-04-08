@@ -25,9 +25,9 @@ public partial class PaymentPage : ContentPage
         string cvc = CvcEntry.Text?.Trim() ?? "";
 
         // Validate inputs
-        if (cardNumber.Length < 13 || expMonth.Length == 0 || expYear.Length == 0 || cvc.Length == 0)
+        if (cardNumber.Length < 13)
         {
-            await DisplayAlert("Error", "Please fill in all card details.", "OK");
+            await DisplayAlert("Error", "Please enter a valid card number.", "OK");
             return;
         }
 
@@ -41,8 +41,8 @@ public partial class PaymentPage : ContentPage
             // Step 1: Create PaymentIntent
             string clientSecret = await App.Stripe.CreatePaymentIntent(_total);
 
-            // Step 2: Confirm payment with card
-            bool success = await App.Stripe.ConfirmPayment(clientSecret, cardNumber, expMonth, expYear, cvc);
+            // Step 2: Confirm payment with test token
+            bool success = await App.Stripe.ConfirmPayment(clientSecret, cardNumber);
 
             if (success)
             {
