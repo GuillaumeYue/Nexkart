@@ -11,6 +11,16 @@
             <Label Text="ADMIN PANEL"
                    FontAttributes="Bold" FontSize="16"
                    HorizontalOptions="Center" VerticalOptions="Center" />
+            <Button Text="+ Add"
+                    FontSize="12"
+                    HeightRequest="32"
+                    WidthRequest="70"
+                    CornerRadius="6"
+                    BackgroundColor="#79B521"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Clicked="OnAddProductClicked" />
         </Grid>
 
         <!-- Product list -->
@@ -26,7 +36,10 @@
                     <DataTemplate>
                         <Border BackgroundColor="#EBEBEB" StrokeThickness="0"
                                 Padding="14,12" Margin="14,4,14,4">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProductTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
                                 <StackLayout Grid.Column="0" Spacing="2">
                                     <Label Text="{Binding Name}"
                                            FontAttributes="Bold" FontSize="14" />
@@ -35,7 +48,16 @@
                                     <Label Text="{Binding Quantity, StringFormat='Stock: {0}'}"
                                            TextColor="#888888" FontSize="12" />
                                 </StackLayout>
-                                <Label Grid.Column="1"
+                                <Button Grid.Column="1"
+                                        Text="Del"
+                                        FontSize="11"
+                                        HeightRequest="30"
+                                        WidthRequest="44"
+                                        CornerRadius="4"
+                                        BackgroundColor="#CC3333"
+                                        TextColor="White"
+                                        Clicked="OnDeleteClicked" />
+                                <Label Grid.Column="2"
                                        Text="›"
                                        FontSize="22" TextColor="#AAAAAA"
                                        VerticalOptions="Center" />
