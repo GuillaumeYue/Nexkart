@@ -10,6 +10,7 @@ namespace NexKart
         public static AuthService Auth { get; } = new AuthService();
         public static FirebaseService Firebase { get; } = new FirebaseService();
         public static GoogleAuthService GoogleAuth { get; } = new GoogleAuthService();
+        public static StripeService Stripe { get; } = new StripeService();
 
         public App()
         {

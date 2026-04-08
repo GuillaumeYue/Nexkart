@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexKart.Pages.User.PaymentPage"
+             Title="Payment">
+    <ScrollView BackgroundColor="#F3F0F7">
+        <StackLayout Padding="16" Spacing="14">
+
+            <Label Text="Payment"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#222222" />
+
+            <!-- Order Summary -->
+            <Border BackgroundColor="#E9E4EF" StrokeThickness="0" Padding="14">
+                <StackLayout Spacing="4">
+                    <Label Text="Order Summary"
+                           FontSize="14" FontAttributes="Bold" TextColor="#555555" />
+                    <Label x:Name="ItemCountLabel"
+                           FontSize="13" TextColor="#666666" />
+                    <Label x:Name="TotalLabel"
+                           FontSize="18" FontAttributes="Bold" TextColor="#79B521" />
+                </StackLayout>
+            </Border>
+
+            <!-- Card Details -->
+            <Label Text="Card Details"
+                   FontSize="14" FontAttributes="Bold"
+                   TextColor="#555555" Margin="0,6,0,0" />
+
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Entry x:Name="CardNumberEntry"
+                       Placeholder="Card Number"
+                       Keyboard="Numeric"
+                       MaxLength="16"
+                       FontSize="14" />
+            </Border>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Border Grid.Column="0" BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                    <Entry x:Name="ExpMonthEntry"
+                           Placeholder="MM"
+                           Keyboard="Numeric"
+                           MaxLength="2"
+                           FontSize="14" />
+                </Border>
+                <Border Grid.Column="1" BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                    <Entry x:Name="ExpYearEntry"
+                           Placeholder="YYYY"
+                           Keyboard="Numeric"
+                           MaxLength="4"
+                           FontSize="14" />
+                </Border>
+                <Border Grid.Column="2" BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                    <Entry x:Name="CvcEntry"
+                           Placeholder="CVC"
+                           Keyboard="Numeric"
+                           MaxLength="3"
+                           FontSize="14" />
+                </Border>
+            </Grid>
+
+            <!-- Test card hint -->
+            <Label Text="Test card: 4242 4242 4242 4242, any future date, any CVC"
+                   FontSize="11"
+                   TextColor="#AAAAAA"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Pay Button -->
+            <Button x:Name="PayButton"
+                    Text="Pay Now"
+                    FontSize="15"
+                    HeightRequest="46"
+                    BackgroundColor="#79B521"
+                    TextColor="White"
+                    CornerRadius="6"
+                    Margin="0,10,0,0"
+                    Clicked="OnPayClicked" />
+
+            <!-- Loading indicator -->
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="#79B521"
+                               HorizontalOptions="Center" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
