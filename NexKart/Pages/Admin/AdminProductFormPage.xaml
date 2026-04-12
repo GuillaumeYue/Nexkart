@@ -53,6 +53,7 @@
                         SelectedIndexChanged="OnImageSelected">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
+                            <x:String>iphone17.png</x:String>
                             <x:String>dell_inspiration.png</x:String>
                             <x:String>macbook_air.png</x:String>
                             <x:String>gaming_pc.png</x:String>
