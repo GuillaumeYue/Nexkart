@@ -40,6 +40,29 @@ namespace NexKart
             }
         }
 
+        private void OnCategoryTapped(object sender, TappedEventArgs e)
+        {
+            string category = e.Parameter?.ToString() ?? "";
+
+            List<Product> filtered = new List<Product>();
+            foreach (Product p in allProducts)
+            {
+                if (p.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
+                    filtered.Add(p);
+            }
+
+            ProductList.ItemsSource = filtered;
+            ProductsHeader.Text = category;
+            ClearFilterLabel.IsVisible = true;
+        }
+
+        private void OnShowAllTapped(object sender, TappedEventArgs e)
+        {
+            ProductList.ItemsSource = allProducts;
+            ProductsHeader.Text = "Featured Products";
+            ClearFilterLabel.IsVisible = false;
+        }
+
         private async void OnProductTapped(object sender, TappedEventArgs e)
         {
             Border border = (Border)sender;

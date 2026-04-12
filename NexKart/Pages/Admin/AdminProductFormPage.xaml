@@ -30,6 +30,21 @@
                         AutoSize="TextChanges" />
             </Border>
 
+            <!-- Category -->
+            <Label Text="Category" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Picker x:Name="CategoryPicker" FontSize="14">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Laptops</x:String>
+                            <x:String>PCs</x:String>
+                            <x:String>Electronics</x:String>
+                            <x:String>Watches</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Border>
+
             <!-- Image URL -->
             <Label Text="Image URL" FontSize="13" TextColor="#555555" />
             <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
