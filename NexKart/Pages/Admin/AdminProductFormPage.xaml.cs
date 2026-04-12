@@ -26,7 +26,10 @@ public partial class AdminProductFormPage : ContentPage
 
         NameEntry.Text = product.Name;
         DescriptionEditor.Text = product.Description;
-        ImageEntry.Text = product.Image;
+        CategoryPicker.SelectedItem = product.Category;
+        ImagePicker.SelectedItem = product.Image;
+        ImagePreview.Source = product.Image;
+        ImagePreview.IsVisible = true;
         PriceEntry.Text = product.Price.ToString("0.00");
         QuantityEntry.Text = product.Quantity.ToString();
     }
@@ -35,7 +38,8 @@ public partial class AdminProductFormPage : ContentPage
     {
         string name = NameEntry.Text?.Trim() ?? "";
         string description = DescriptionEditor.Text?.Trim() ?? "";
-        string image = ImageEntry.Text?.Trim() ?? "";
+        string category = CategoryPicker.SelectedItem?.ToString() ?? "";
+        string image = ImagePicker.SelectedItem?.ToString() ?? "";
         string priceText = PriceEntry.Text?.Trim() ?? "";
         string qtyText = QuantityEntry.Text?.Trim() ?? "";
 
@@ -65,6 +69,7 @@ public partial class AdminProductFormPage : ContentPage
             {
                 _existing.Name = name;
                 _existing.Description = description;
+                _existing.Category = category;
                 _existing.Image = image;
                 _existing.Price = price;
                 _existing.Quantity = quantity;
@@ -77,6 +82,7 @@ public partial class AdminProductFormPage : ContentPage
                 Product product = new Product();
                 product.Name = name;
                 product.Description = description;
+                product.Category = category;
                 product.Image = image;
                 product.Price = price;
                 product.Quantity = quantity;
@@ -90,6 +96,16 @@ public partial class AdminProductFormPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", "Failed to save: " + ex.Message, "OK");
+        }
+    }
+
+    private void OnImageSelected(object sender, EventArgs e)
+    {
+        string selected = ImagePicker.SelectedItem?.ToString() ?? "";
+        if (!string.IsNullOrEmpty(selected))
+        {
+            ImagePreview.Source = selected;
+            ImagePreview.IsVisible = true;
         }
     }
 }

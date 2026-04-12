@@ -20,9 +20,11 @@
                     </Grid>
 
                     <Border BackgroundColor="#ECE8F0" StrokeThickness="0" Padding="10,8">
-                        <Label Text="Search products..."
-                               TextColor="#999999"
-                               FontSize="13" />
+                        <Entry x:Name="SearchEntry"
+                               Placeholder="Search products..."
+                               FontSize="13"
+                               TextChanged="OnSearchTextChanged"
+                               ClearButtonVisibility="WhileEditing" />
                     </Border>
 
                     <Grid HeightRequest="140">
@@ -53,24 +55,36 @@
 
                     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="8" RowSpacing="8">
                         <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Laptops" />
+                            </Border.GestureRecognizers>
                             <Grid ColumnDefinitions="50,*">
                                 <Image Source="laptop.png" HeightRequest="30" WidthRequest="50" />
                                 <Label Grid.Column="1" Text="Laptops" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
                             </Grid>
                         </Border>
                         <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="PCs" />
+                            </Border.GestureRecognizers>
                             <Grid ColumnDefinitions="50,*">
                                 <Image Source="computer.png" HeightRequest="30" WidthRequest="50" />
                                 <Label Grid.Column="1" Text="PCs" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
                             </Grid>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Electronics" />
+                            </Border.GestureRecognizers>
                             <Grid ColumnDefinitions="50,*">
                                 <Image Source="headphones.png" HeightRequest="30" WidthRequest="50" />
                                 <Label Grid.Column="1" Text="Electronics" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
                             </Grid>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Watches" />
+                            </Border.GestureRecognizers>
                             <Grid ColumnDefinitions="50,*">
                                 <Image Source="watch_pic.png" HeightRequest="30" WidthRequest="50" />
                                 <Label Grid.Column="1" Text="Watches" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
@@ -78,10 +92,22 @@
                         </Border>
                     </Grid>
 
-                    <Label Text="Featured Products"
-                           FontAttributes="Bold"
-                           TextColor="#454545"
-                           Margin="2,6,0,0" />
+                    <Grid ColumnDefinitions="*,Auto" Margin="2,6,0,0">
+                        <Label x:Name="ProductsHeader"
+                               Text="Featured Products"
+                               FontAttributes="Bold"
+                               TextColor="#454545" />
+                        <Label x:Name="ClearFilterLabel"
+                               Grid.Column="1"
+                               Text="Show All"
+                               TextColor="#7AC218"
+                               FontSize="13"
+                               IsVisible="False">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnShowAllTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
                 </StackLayout>
             </CollectionView.Header>
 

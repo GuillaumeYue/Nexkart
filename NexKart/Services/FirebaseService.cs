@@ -101,6 +101,7 @@ public class FirebaseService
                 Name        = new { stringValue  = p.Name },
                 Image       = new { stringValue  = p.Image },
                 Description = new { stringValue  = p.Description },
+                Category    = new { stringValue  = p.Category },
                 Price       = new { doubleValue  = (double)p.Price },
                 Quantity    = new { integerValue = p.Quantity.ToString() }
             }
@@ -116,6 +117,7 @@ public class FirebaseService
         product.Name        = GetString(f, "Name");
         product.Image       = GetString(f, "Image");
         product.Description = GetString(f, "Description");
+        product.Category    = GetString(f, "Category");
         product.Price       = GetDecimal(f, "Price");
         product.Quantity    = GetInt(f, "Quantity");
 

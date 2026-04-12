@@ -30,13 +30,46 @@
                         AutoSize="TextChanges" />
             </Border>
 
-            <!-- Image URL -->
-            <Label Text="Image URL" FontSize="13" TextColor="#555555" />
+            <!-- Category -->
+            <Label Text="Category" FontSize="13" TextColor="#555555" />
             <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
-                <Entry x:Name="ImageEntry"
-                       Placeholder="Enter image URL"
-                       FontSize="14" />
+                <Picker x:Name="CategoryPicker" FontSize="14">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Laptops</x:String>
+                            <x:String>PCs</x:String>
+                            <x:String>Electronics</x:String>
+                            <x:String>Watches</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
             </Border>
+
+            <!-- Image -->
+            <Label Text="Product Image" FontSize="13" TextColor="#555555" />
+            <Border BackgroundColor="#EBEBEB" StrokeThickness="0" Padding="10,8">
+                <Picker x:Name="ImagePicker"
+                        FontSize="14"
+                        SelectedIndexChanged="OnImageSelected">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>dell_inspiration.png</x:String>
+                            <x:String>macbook_air.png</x:String>
+                            <x:String>gaming_pc.png</x:String>
+                            <x:String>galaxy_buds.png</x:String>
+                            <x:String>homepod.png</x:String>
+                            <x:String>sonyhd250.png</x:String>
+                            <x:String>sonyhdp.png</x:String>
+                            <x:String>smart_watch.png</x:String>
+                            <x:String>switch_game.png</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Border>
+            <Image x:Name="ImagePreview"
+                   HeightRequest="100"
+                   Aspect="AspectFit"
+                   IsVisible="False" />
 
             <!-- Price -->
             <Label Text="Price" FontSize="13" TextColor="#555555" />
