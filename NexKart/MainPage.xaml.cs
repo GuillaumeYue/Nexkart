@@ -5,6 +5,8 @@ namespace NexKart
 {
     public partial class MainPage : ContentPage
     {
+        List<Product> allProducts = new List<Product>();
+
         public MainPage()
         {
             InitializeComponent();
@@ -14,8 +16,28 @@ namespace NexKart
         {
             base.OnAppearing();
 
-            var products = await App.Firebase.GetProducts();
-            ProductList.ItemsSource = products;
+            allProducts = await App.Firebase.GetProducts();
+            ProductList.ItemsSource = allProducts;
+        }
+
+        private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string keyword = (e.NewTextValue ?? "").Trim().ToLower();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                ProductList.ItemsSource = allProducts;
+            }
+            else
+            {
+                List<Product> filtered = new List<Product>();
+                foreach (Product p in allProducts)
+                {
+                    if (p.Name.ToLower().Contains(keyword))
+                        filtered.Add(p);
+                }
+                ProductList.ItemsSource = filtered;
+            }
         }
 
         private async void OnProductTapped(object sender, TappedEventArgs e)

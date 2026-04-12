@@ -20,9 +20,11 @@
                     </Grid>
 
                     <Border BackgroundColor="#ECE8F0" StrokeThickness="0" Padding="10,8">
-                        <Label Text="Search products..."
-                               TextColor="#999999"
-                               FontSize="13" />
+                        <Entry x:Name="SearchEntry"
+                               Placeholder="Search products..."
+                               FontSize="13"
+                               TextChanged="OnSearchTextChanged"
+                               ClearButtonVisibility="WhileEditing" />
                     </Border>
 
                     <Grid HeightRequest="140">
