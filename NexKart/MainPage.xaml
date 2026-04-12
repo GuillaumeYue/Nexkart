@@ -53,7 +53,7 @@
                            TextColor="#454545"
                            Margin="2,2,0,0" />
 
-                    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="8" RowSpacing="8">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" ColumnSpacing="8" RowSpacing="8">
                         <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Laptops" />
@@ -88,6 +88,24 @@
                             <Grid ColumnDefinitions="50,*">
                                 <Image Source="watch_pic.png" HeightRequest="30" WidthRequest="50" />
                                 <Label Grid.Column="1" Text="Watches" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="0" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Smart Phones" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="50,*">
+                                <Image Source="iphone17.png" HeightRequest="30" WidthRequest="50" />
+                                <Label Grid.Column="1" Text="Smart Phones" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" BackgroundColor="#EFECF4" StrokeThickness="0" Padding="8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Accessories" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="50,*">
+                                <Image Source="headphones.png" HeightRequest="30" WidthRequest="50" />
+                                <Label Grid.Column="1" Text="Accessories" VerticalOptions="Center" TextColor="#555555" FontSize="13" />
                             </Grid>
                         </Border>
                     </Grid>

@@ -40,6 +40,8 @@
                             <x:String>PCs</x:String>
                             <x:String>Electronics</x:String>
                             <x:String>Watches</x:String>
+                            <x:String>Smart Phones</x:String>
+                            <x:String>Accessories</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
