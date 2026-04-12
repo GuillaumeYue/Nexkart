@@ -37,4 +37,14 @@ public partial class AdminDashboardPage : ContentPage
     {
         Application.Current.Windows[0].Page = new NavigationPage(new AdminOrderPage());
     }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        bool confirm = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
+        if (confirm)
+        {
+            App.Auth.SignOut();
+            Application.Current.Windows[0].Page = new NavigationPage(new Auth.LoginPage());
+        }
+    }
 }

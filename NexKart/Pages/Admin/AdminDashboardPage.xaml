@@ -13,10 +13,16 @@
                    FontSize="16"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
-            <Image Source="wishlist_icon.png"
-                   HeightRequest="24" WidthRequest="24"
-                   HorizontalOptions="End"
-                   VerticalOptions="Center" />
+            <Button Text="Logout"
+                    FontSize="13"
+                    HeightRequest="34"
+                    WidthRequest="80"
+                    BackgroundColor="#CC3333"
+                    TextColor="White"
+                    CornerRadius="4"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Clicked="OnLogoutClicked" />
         </Grid>
 
         <!-- Dashboard content -->
