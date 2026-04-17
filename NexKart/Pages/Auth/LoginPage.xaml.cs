@@ -41,7 +41,22 @@ public partial class LoginPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Login Failed", ex.Message, "OK");
+            string msg = ex.Message;
+
+            if (msg.Contains("INVALID_PASSWORD") || msg.Contains("INVALID_LOGIN_CREDENTIALS") || msg.Contains("WRONG_PASSWORD"))
+                msg = "Incorrect password. Please try again.";
+            else if (msg.Contains("EMAIL_NOT_FOUND") || msg.Contains("USER_NOT_FOUND"))
+                msg = "No account found with this email.";
+            else if (msg.Contains("INVALID_EMAIL"))
+                msg = "Please enter a valid email address.";
+            else if (msg.Contains("TOO_MANY_ATTEMPTS") || msg.Contains("TOO_MANY_REQUESTS"))
+                msg = "Too many failed attempts. Please try again later.";
+            else if (msg.Contains("USER_DISABLED"))
+                msg = "This account has been disabled.";
+            else
+                msg = "Login failed. Please check your credentials.";
+
+            await DisplayAlert("Login Failed", msg, "OK");
         }
     }
 
